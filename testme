@@ -1,7 +1,34 @@
-echo "# gai" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/zusoo/gai.git
-git push -u origin main
+# these files are necessary to import as it is
+import numpy as np
+import os
+import PIL
+import PIL.Image
+import tensorflow as tf
+import tensorflow_datasets as tfds
+import pathlib
+
+# here you can load dataset what you want i have loaded a data set of flowers 
+# do not do any thing more these are builtin you have to change only paths
+dataset_url = "https://storage.googleapis.com/download.tensorflow.org/example_images/flower_photos.tgz"
+archive = tf.keras.utils.get_file(origin=dataset_url, extract=True)
+data_dir = pathlib.Path(archive).with_suffix('')
+
+#this line will tell you how many roses are in the data set
+image_count = len(list(data_dir.glob('*/*.jpg')))
+print("there are total images",image_count);
+
+# now set the size of image what you like
+batch_size = 32
+img_height = 180
+img_width = 180
+
+# now i want to know how many classed are in my data set
+class_names = train_ds.class_names
+print(class_names)
+
+# now the result will be as follow
+ #                                        there are total images 3670
+  #                                        ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+# at this stage i know there are six classes in this data set namely above now i want to see the image of sunflowers at 2 number
+flower = list(data_dir.glob('daisy/*'))
+PIL.Image.open(str(flower[]))
